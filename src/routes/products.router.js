@@ -4,11 +4,10 @@ import ProductManager from "../productManager.js";
 const router = new Router();
 
 const nuevoProducto = new ProductManager();
-nuevoProducto.addProduct('Mochila', 'Marca Head', 500, 'image.png', 2424, 50);
-nuevoProducto.addProduct('Cartera', 'Cartera blanca', 500, 'image.png', 2424, 50);
-nuevoProducto.addProduct('Remera', 'Boca Juniors', 500, 'image.png', 2425, 50);
-nuevoProducto.addProduct('Short', 'River Plate', 500, 'image.png', 2426, 50);
-nuevoProducto.getProductsById(4);
+//nuevoProducto.addProduct('Mochila', 'Marca Head', 500, 'image.png', 2424, 50);
+//nuevoProducto.addProduct('Cartera', 'Cartera blanca', 500, 'image.png', 2424, 50);
+//nuevoProducto.addProduct('Remera', 'Boca Juniors', 500, 'image.png', 2425, 50);
+//nuevoProducto.addProduct('Short', 'River Plate', 500, 'image.png', 2426, 50);
 
 
 router.get('/', (req, res)=>{
@@ -34,8 +33,9 @@ router.get('/:pid', (req, res)=>{
 });
 
 router.post('/', (req, res) =>{
-    const newProduct = req.body;
-    nuevoProducto.addProduct(newProduct);
+    const newProducts = req.body;
+    const {title, description, price, thumbnail, code, stock} = newProducts;
+    nuevoProducto.addProduct(title, description, price, thumbnail, code, stock);
 })
 
 

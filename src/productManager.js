@@ -4,11 +4,11 @@ export default class ProductManager {
         this.id = 1;
     }
 
-    addProduct(title, description, price, thumbnail, code, stock){
+    addProduct = async (title, description, price, thumbnail, code, stock)=>{
         if(!title || !description || !price || !thumbnail || !code || !stock){
             console.log('Todos los campos son obligatorios');
         }else{
-            const getId = this.products.find(product => product.code === code);
+            const getId = await this.products.find(product => product.code === code);
             if(getId){
                 console.log('Error, código ya existente')
             }else{
@@ -25,7 +25,6 @@ export default class ProductManager {
                 id
             }
             this.products.push(newProduct);
-            console.log({newProduct})
             console.log('producto agregado correctamente');
             }
         }
