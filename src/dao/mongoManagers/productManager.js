@@ -43,4 +43,8 @@ export default class ProductManager {
         }
     }
 
+    deleteProductsById(id){
+        
+    }
+
 }
