@@ -1,21 +1,22 @@
 import express from 'express';
 import productsRouter from './routes/products.router.js'
 import mongoose from 'mongoose';
+import config from './config/config.js';
+
+//Enviroment Variables
+const PORT = config.port, BASE_URL = config.baseurl, MONGO_USER = config.mongo.dbUser, MONGO_PSWD = config.mongo.dbPass, MONGO_HOST = config.mongo.dbHost;
 
 //Server configuration
 const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.listen('8080', console.log('Servidor conectado correctamente'));
+app.listen(PORT, console.log('Servidor conectado correctamente'));
 
 //Mongoose Connection
-const MONGO = `mongodb+srv://mendezgabriel1994:5qMqA6Cndw0h9P1V@cluster0.x3zdcqe.mongodb.net/mynewecommerce`;
+const MONGO = `mongodb+srv://${MONGO_USER}:${MONGO_PSWD}@${MONGO_HOST}/mynewecommerce`;
 const connection = mongoose.connect(MONGO, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
-
-// TO DO: Aplicar variables de entorno
-
 
 app.use('/api/products', productsRouter);
